@@ -441,7 +441,7 @@
               style="margin: 10px"
             >
               <div class="team__item__text">
-                <h4>Jio Mart</h4>
+                <h4>Ideakart</h4>
                 <p>
                   Since I'm pursuing a Full Stack Web Development course at
                   Masai School I was given a project to clone an 
@@ -1401,10 +1401,8 @@
           <div class="col-lg-7" id="contactus">
             <form
               id="index_form"
-              method="POST"
               name="index_form"
               class="php-email-form mt-4"
-              action="https://script.google.com/macros/s/AKfycbwf_fP357TJl5wMXZmsKVJyflEkABQQ5c593TygoQGvBjfZQAeUe7f8tX3GM3-EgDex9Q/exec"
             >
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -1509,6 +1507,29 @@
     <!-- Footer Section End -->
   </body>
   <script>
+    document.getElementById("index_form").addEventListener('submit', (event)=>{
+      event.preventDefault();
+      let name = document.getElementById("name_index").value;
+      let email = document.getElementById("email_index").value;
+      let subject = document.getElementById("subject_index").value;
+      let message = document.getElementById("message_index").value;
+
+      let a = fetch(`https://script.google.com/macros/s/AKfycbx8AGwcB0DKbNC73juWZYS4Cz0iheqRlDWpPNRqqKg6fzw5ZBiZkN--Pw5XnJY6qiLh/exec?Name=${name}&Email=${email}&Subject=${subject}&Message=${message}`)
+      console.log('fetch: ',a);
+
+      var status = document.getElementById("status");
+      var form = document.getElementById("index_form");
+      if(a){
+        form.reset();
+        status.classList.add("success");
+        status.innerHTML = "Thanks!";
+      }else{
+        status.classList.add("error");
+        status.innerHTML = "Oops! There was a problem.";
+      }
+    })
+  </script>
+  <!-- <script>
     window.addEventListener("DOMContentLoaded", function () {
       var form = document.getElementById("index_form");
 
@@ -1546,7 +1567,7 @@
       };
       xhr.send(data);
     }
-  </script>
+  </script> -->
   <!-- Js Plugins -->
   <script src="./js/canva.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
